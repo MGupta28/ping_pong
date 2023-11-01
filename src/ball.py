@@ -40,7 +40,6 @@ class Ball:
         pose_abs.x = x
         pose_abs.y = y
         pose_abs.theta = theta
-        rospy.loginfo(f"Set Absolute Pose (x, y, theta) = ({x}, {y}, {theta})")
         self.teleport_abs_client(pose_abs)
 
     def setVel(self, x, theta):
@@ -59,15 +58,12 @@ class Ball:
 
     def poseCallback(self, pose):
         self.pose = pose
-        rospy.loginfo(f"x: {pose.x}, y: {pose.y}, theta: {pose.theta}, linear_vel: {pose.linear_velocity}, angular_vel: {pose.angular_velocity}, dir: {self.direction}")
 
     def poseLeftCallback(self, pose):
         self.pose_left = pose
-        rospy.logdebug(f"Left: x: {pose.x}, y: {pose.y}, theta: {pose.theta}, linear_vel: {pose.linear_velocity}, angular_vel: {pose.angular_velocity}")
 
     def poseRightCallback(self, pose):
         self.pose_right = pose
-        rospy.logdebug(f"Left: x: {pose.x}, y: {pose.y}, theta: {pose.theta}, linear_vel: {pose.linear_velocity}, angular_vel: {pose.angular_velocity}")
 
     def move(self):
         if self.pose is None or self.pose_left is None or self.pose_right is None:
@@ -140,7 +136,7 @@ class Ball:
                 rel_intersect_y = (left_y + delta_y) - ball_y
                 norm_rel_intersect_y = rel_intersect_y / paddle_size
                 bounce_angle = norm_rel_intersect_y * max_bounce_angle
-                rospy.loginfo(f"Bounce angle: {bounce_angle}")
+                rospy.loginfo("turtle bounced")
                 self.setPoseAbs(ball_x, ball_y, bounce_angle)
 
         if right_x - delta_x < ball_x and ball_x < right_x + delta_x:
@@ -152,7 +148,7 @@ class Ball:
                     bounce_angle += math.pi / 2
                 else:
                     bounce_angle -= math.pi / 2
-                rospy.loginfo(f"Bounce angle: {bounce_angle}")
+                rospy.loginfo("turtle bounced")
                 self.setPoseAbs(ball_x, ball_y, bounce_angle)
 
     def updateDirection(self):
