@@ -1,5 +1,0 @@
-<launch>
-    <node name="pong" pkg="ping_pong" type="node" output="screen"/>
-    <node name="ball" pkg="ping_pong" type="ping_pong_ball" output="screen"/>
-    <node name="key" pkg="ping_pong" type="ping_pong_key" output="screen"/>
-</launch>
