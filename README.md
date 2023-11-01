@@ -11,3 +11,5 @@ rosrun turtlesim turtlesim_node
 ```
 roslaunch ping_pong pong.launch
 ```
+
+> To control the turtles use the arrow keys for right turtle and 'w' & 's' for the left turtle
